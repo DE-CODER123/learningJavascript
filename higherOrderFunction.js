@@ -57,6 +57,50 @@ console.log(num3s2);
 let actN = actors.filter((namesA) => namesA.name === "Keanu Reevs"  );
 console.log(actN)
 
+//find method - loops throughn an array and returnd the first item that meets the condition specified. if no item matches the condition, it returns undefined.
+
+let iii = [10, 20, 30, 40, 50];
+let foundMatch = iii.find((item) => item > 20);
+console.log(foundMatch);//30 cos its thr first item that meets our condition eventhough others are there.
+
+// reduce method - loops over an array and returns a single value. it takes a callback with 2 arguments - the accumulator and the current value/element . on each iteration , the acc is the value returned by the last iteration, while the current value is the current element in the array
+//additionally, a 3rd argument can be passed which acts as the intitial value for the iteration to begin.
+const getTotalSum = iii.reduce((acc, cv) => acc + cv);
+console.log(getTotalSum);//150
+
+const sumUpActorsNetworth = actors.reduce((acc, cv) => acc + cv.networth, 0);
+console.log(sumUpActorsNetworth);
+
+// forEach method - it iterates over an array and applies a callback on each element. it does not return anything, it is used for side effects.
+//iii.forEach((item) => {
+  //console.log(item * 2); //prints each item multiplied by 2
+//});
+
+//the foEach and map methods are similar, and can take up to three parameters which are:
+//1. the current value the current element to iterate over
+//2. the index of the current element it is optional
+//3. the array itself it is optional
 
 
+let numbers = [1, 2, 3, 4, 5];
+let forEachResult = numbers.forEach((num) => num * 2);
+console.log(forEachResult); //undefined, because forEach does not return anything. we can not transform an array using the forEach methodd method. it purpose is to execute a function on each element of the array for side effects, not to transform the array.
 
+console.log(numbers); // [1, 2, 3, 4, 5] - the original array is not altered
+let forEachResult2 = numbers.map((num) => num * 2);
+console.log(forEachResult2); // [2, 4, 6, 8, 10] - the original array is not altered
+
+// getting the index of the current element in the forEach/map method
+actors.forEach((actors, index) => console.log(`${index}. ${actors.name}`)); // prints the index and name of each actor
+
+//getting the array itself in the forEach/map method
+actors.forEach((actors, index, array) => console.log(`${index}. ${actors.name} - ${array.length} actors in total`)); // prints the index, name and total number of actors
+
+// using the forEach to get actors with networth less than 2000
+
+actors.forEach((actor) => {
+  if (actor.networth < 2000) {
+    console.log(`${actor.name} has a networth of ${actor.networth}`);
+  }
+}
+)
